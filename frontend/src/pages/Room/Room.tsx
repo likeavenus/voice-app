@@ -37,7 +37,18 @@ export const RoomPage = () => {
   if (!token) {
     return (
       <div className="username-prompt">
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Enter your name" disabled={isConnecting} />
+        <input
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              fetchToken();
+            }
+          }}
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Enter your name"
+          disabled={isConnecting}
+        />
         <button onClick={fetchToken} disabled={isConnecting}>
           {isConnecting ? "Joining..." : "Join Room"}
         </button>

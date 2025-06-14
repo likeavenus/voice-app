@@ -110,7 +110,6 @@ export function VideoConferenceCustom({
   ]);
 
   //   useWarnAboutMissingStyles();
-  console.log("focusTrack: ", focusTrack);
 
   return (
     <div className="lk-video-conference" {...props}>
