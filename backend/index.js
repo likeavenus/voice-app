@@ -14,13 +14,14 @@ const allowedOrigins = [
 ];
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  // origin: function (origin, callback) {
+  //   if (!origin || allowedOrigins.includes(origin)) {
+  //     callback(null, true);
+  //   } else {
+  //     callback(new Error("Not allowed by CORS"));
+  //   }
+  // },
+  origin: ["https://voice-app-xi.vercel.app/", "http://localhost:5173"],
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
