@@ -201,6 +201,7 @@ canvas {
   border-radius: 12px;
   overflow: hidden;
   padding: 16px;
+  max-width: 802px;
 }
 
 .canvas-container {
