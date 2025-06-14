@@ -19,6 +19,7 @@ import {
 import {} from "@livekit/components-react/hooks";
 import { RoomEvent, Track } from "livekit-client";
 import * as React from "react";
+import "./styles.css";
 
 /**
  * @public
@@ -110,6 +111,7 @@ export function VideoConferenceCustom({
   ]);
 
   //   useWarnAboutMissingStyles();
+  console.log("tracks: ", tracks);
 
   return (
     <div className="lk-video-conference" {...props}>
@@ -136,14 +138,30 @@ export function VideoConferenceCustom({
                 </FocusLayoutContainer>
               </div>
             )} */}
-            <div className="lk-focus-layout-wrapper">
+            {tracks?.length <= 1 ? (
+              <div className="lk-grid-layout-wrapper">
+                <GridLayout tracks={tracks}>
+                  <ParticipantTile />
+                </GridLayout>
+              </div>
+            ) : (
+              <div className="lk-focus-layout-wrapper">
+                <FocusLayoutContainer>
+                  <CarouselLayout tracks={carouselTracks}>
+                    <ParticipantTile />
+                  </CarouselLayout>
+                  {focusTrack && <FocusLayout trackRef={focusTrack} />}
+                </FocusLayoutContainer>
+              </div>
+            )}
+            {/* <div className="lk-focus-layout-wrapper">
               <FocusLayoutContainer>
                 <CarouselLayout tracks={carouselTracks}>
                   <ParticipantTile />
                 </CarouselLayout>
                 {focusTrack && <FocusLayout trackRef={focusTrack} />}
               </FocusLayoutContainer>
-            </div>
+            </div> */}
             <ControlBar controls={{ chat: true, settings: !!SettingsComponent }} />
           </div>
           <Chat

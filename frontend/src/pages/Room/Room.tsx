@@ -67,14 +67,6 @@ export const RoomPage = () => {
 
 const A_COLORS = ["#6366f1", "6366f1", "#f44336", "#673ab7"];
 
-const Settings: React.FC = ({ children }) => {
-  return (
-    <div className="settings" style={{ display: "none" }}>
-      {children}
-    </div>
-  );
-};
-
 const RoomContent = ({ roomId, username }: { roomId: string; username: string }) => {
   // Получаем список всех участников
   const participants = useParticipants();
@@ -92,7 +84,7 @@ const RoomContent = ({ roomId, username }: { roomId: string; username: string })
           <div className="participants-list">
             {participants.map((participant, i) => (
               <div key={participant.identity} className="participant-item">
-                <div className="participant-avatar" style={{ backgroundColor: A_COLORS[Math.floor(Math.random() * A_COLORS.length)] }}>
+                <div className="participant-avatar" style={{ backgroundColor: A_COLORS[0] }}>
                   {participant.identity.charAt(0).toUpperCase()}
                 </div>
                 <div className="participant-info">
@@ -122,10 +114,10 @@ const RoomContent = ({ roomId, username }: { roomId: string; username: string })
             ))}
           </div>
         </div>
-      </div>
 
-      <div className="game-section">
-        <GameCanvas roomId={roomId} username={username} />
+        <div className="game-section">
+          <GameCanvas roomId={roomId} username={username} />
+        </div>
       </div>
     </div>
   );

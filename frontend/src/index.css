@@ -209,7 +209,6 @@ canvas {
 .game-area {
   display: flex;
   flex-direction: column;
-  height: 100%;
   background-color: #2a2a3a;
   border-radius: 12px;
   overflow: hidden;
@@ -218,10 +217,8 @@ canvas {
 }
 
 .canvas-container {
-  flex: 1;
   display: flex;
   justify-content: center;
-  background-color: white;
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 16px;
