@@ -6,7 +6,15 @@ const http = require("http");
 const { RoomServiceClient, AccessToken } = require("livekit-server-sdk");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "https://your-vercel-app.vercel.app", // Ваш фронтенд на Vercel
+      "http://localhost:5173", // Для локальной разработки
+    ],
+    methods: ["GET", "POST"],
+  })
+);
 app.use(express.json());
 
 const server = http.createServer(app);
