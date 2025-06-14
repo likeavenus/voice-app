@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { LiveKitRoom, VideoConference, useParticipants } from "@livekit/components-react";
+import { LiveKitRoom, VideoConference, useParticipants, RoomContext } from "@livekit/components-react";
 // import { GameCanvas } from "../../components/GameCanvas";
 // import { GameCanvas } from "../../components/GameCanvas2";
 // import { GameCanvas } from "../../components/GameCanvas3";
@@ -9,12 +9,14 @@ import { GameCanvas } from "../../components/GameCanvas4";
 import { getToken } from "../../api";
 import "@livekit/components-styles";
 import "./styles.css";
+import { Room } from "livekit-client";
 
 export const RoomPage = () => {
   const { roomId } = useParams();
   const [token, setToken] = useState<string | null>(null);
   const [username, setUsername] = useState("");
   const [isConnecting, setIsConnecting] = useState(false);
+  const [room] = useState(() => new Room({}));
 
   const fetchToken = async () => {
     if (!roomId || !username) return;
@@ -43,9 +45,11 @@ export const RoomPage = () => {
   }
 
   return (
-    <LiveKitRoom token={token} serverUrl={import.meta.env.VITE_LIVEKIT_URL} connect={true} onDisconnected={() => setToken(null)}>
-      <RoomContent roomId={roomId!} username={username} />
-    </LiveKitRoom>
+    <RoomContext.Provider value={room}>
+      <LiveKitRoom token={token} serverUrl={import.meta.env.VITE_LIVEKIT_URL} connect={true} onDisconnected={() => setToken(null)}>
+        <RoomContent roomId={roomId!} username={username} />
+      </LiveKitRoom>
+    </RoomContext.Provider>
   );
 };
 
