@@ -12,6 +12,14 @@
 }
 
 .lk-carousel {
-  overflow-y: scroll !important;
+  overflow-y: auto !important;
   height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .lk-focus-layout {
+    /* display: flex;
+    flex-direction: row; */
+    width: 400px;
+  }
 }

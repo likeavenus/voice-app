@@ -83,7 +83,11 @@ const RoomContent = ({ roomId, username }: { roomId: string; username: string })
           <h3>Участники ({participants.length})</h3>
           <div className="participants-list">
             {participants.map((participant, i) => (
-              <div key={participant.identity} className="participant-item">
+              <div
+                key={participant.identity}
+                className="participant-item"
+                style={{ border: participant.isSpeaking ? "1px solid #4CAF50" : "1px solid white" }}
+              >
                 <div className="participant-avatar" style={{ backgroundColor: A_COLORS[0] }}>
                   {participant.identity.charAt(0).toUpperCase()}
                 </div>

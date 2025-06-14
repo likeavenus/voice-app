@@ -33,7 +33,7 @@
 .participants-list {
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 100vh;
 
   gap: 10px;
@@ -196,4 +196,10 @@
 .lk-video-conference {
   height: auto;
   width: auto;
+}
+
+@media (max-width: 768px) {
+  .lk-video-conference {
+    width: 400px;
+  }
 }
