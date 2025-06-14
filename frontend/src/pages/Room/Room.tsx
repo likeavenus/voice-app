@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { LiveKitRoom, VideoConference, useParticipants, RoomContext } from "@livekit/components-react";
+import { LiveKitRoom, VideoConference, useParticipants, RoomContext, ControlBar } from "@livekit/components-react";
 // import { GameCanvas } from "../../components/GameCanvas";
 // import { GameCanvas } from "../../components/GameCanvas2";
 // import { GameCanvas } from "../../components/GameCanvas3";
@@ -10,6 +10,7 @@ import { getToken } from "../../api";
 import "@livekit/components-styles";
 import "./styles.css";
 import { Room } from "livekit-client";
+import { VideoConferenceCustom } from "../../components/VideoConferenceCustom/VideoConferenceCustom";
 
 export const RoomPage = () => {
   const { roomId } = useParams();
@@ -55,6 +56,14 @@ export const RoomPage = () => {
 
 const A_COLORS = ["#6366f1", "6366f1", "#f44336", "#673ab7"];
 
+const Settings: React.FC = ({ children }) => {
+  return (
+    <div className="settings" style={{ display: "none" }}>
+      {children}
+    </div>
+  );
+};
+
 const RoomContent = ({ roomId, username }: { roomId: string; username: string }) => {
   // Получаем список всех участников
   const participants = useParticipants();
@@ -63,11 +72,12 @@ const RoomContent = ({ roomId, username }: { roomId: string; username: string })
   return (
     <div className="room-container">
       <div className="voice-section">
-        <VideoConference />
+        {/* <VideoConference SettingsComponent={Settings} /> */}
+        <VideoConferenceCustom />
 
         {/* Панель участников */}
         <div className="participants-panel">
-          <h3>Participants ({participants.length})</h3>
+          <h3>Участники ({participants.length})</h3>
           <div className="participants-list">
             {participants.map((participant, i) => (
               <div key={participant.identity} className="participant-item">

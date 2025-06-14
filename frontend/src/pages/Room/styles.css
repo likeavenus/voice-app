@@ -174,3 +174,7 @@
     height: 120px;
   }
 }
+
+.lk-participant-media-video {
+  height: 300px !important;
+}

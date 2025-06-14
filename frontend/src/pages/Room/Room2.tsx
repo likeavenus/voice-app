@@ -93,7 +93,7 @@ const RoomContent = ({ roomId, username }: { roomId: string; username: string })
 
         {/* Панель участников */}
         <div className="participants-panel">
-          <h3>Participants ({participants.length})</h3>
+          <h3>Участники ({participants.length})</h3>
           <div className="participants-list">
             {participants.map((participant) => (
               <div key={participant.identity} className="participant-item">
