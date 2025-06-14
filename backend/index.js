@@ -6,21 +6,37 @@ const http = require("http");
 const { RoomServiceClient, AccessToken } = require("livekit-server-sdk");
 
 const app = express();
-app.use(
-  cors({
-    origin: [
-      "https://voice-app-xi.vercel.app/", // Ваш фронтенд на Vercel
-      "https://voice-app-xlw7.onrender.com", // Для локальной разработки
-    ],
-    methods: ["GET", "POST"],
-  })
-);
+
+// Настройка CORS
+const allowedOrigins = [
+  "https://voice-app-xi.vercel.app/",
+  "http://localhost:5173", // для локальной разработки
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
+
 app.use(express.json());
 
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: "*",
+    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
