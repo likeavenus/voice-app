@@ -143,8 +143,10 @@ button:focus-visible {
 }
 
 .lk-grid-layout {
+  display: flex !important;
   /* height: 100%; */
   gap: 16px;
+  height: 400px;
 }
 
 .lk-game-section {
