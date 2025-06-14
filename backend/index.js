@@ -9,8 +9,8 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "https://your-vercel-app.vercel.app", // Ваш фронтенд на Vercel
-      "http://localhost:5173", // Для локальной разработки
+      "https://voice-app-xi.vercel.app/", // Ваш фронтенд на Vercel
+      "https://voice-app-xlw7.onrender.com", // Для локальной разработки
     ],
     methods: ["GET", "POST"],
   })
